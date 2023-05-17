@@ -1,12 +1,9 @@
 import { MasaContext } from "@/contexts/masa-context";
-import { shortenAddress } from "@/helpers/shortenAddress";
+import { shortenAddress } from "@/helpers/shortenString";
 import { useCeloNames } from "@/hooks/useCeloNames";
-import { useUpdateValueById } from "@/hooks/useUpdateValueById";
 import { Masa } from "@masa-finance/masa-sdk";
-import { useAccountModal } from "@rainbow-me/rainbowkit";
-import { Signer } from "ethers";
-import { ReactNode, useEffect, useMemo, useState } from "react";
-import { useAccount, useProvider, useSigner } from "wagmi";
+import { useEffect, useMemo, useState } from "react";
+import { useAccount, useSigner } from "wagmi";
 
 interface MasaProviderProps {
   children: JSX.Element;
@@ -42,11 +39,6 @@ export const MasaProvider = ({ children }: MasaProviderProps) => {
   const namesList = useMemo(() => {
     return names?.map((name) => name.metadata.name) ?? [];
   }, [names]);
-
-  // useUpdateValueById(
-  //   "rk_profile_title",
-  //   names && namesList.length > 0 ? namesList[0] : ""
-  // );
 
   const context = {
     masa,
