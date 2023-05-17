@@ -12,6 +12,7 @@
         "@celo/rainbowkit-celo": "^0.11.0",
         "@headlessui/react": "^1.7.13",
         "@heroicons/react": "^2.0.16",
+        "@masa-finance/masa-sdk": "^2.1.0",
         "@rainbow-me/rainbowkit": "^0.12.2",
         "ethers": "^5.7.2",
         "next": "13.2.4",
