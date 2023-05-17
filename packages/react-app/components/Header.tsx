@@ -2,8 +2,8 @@ import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
+import { FindAndUpdateValue } from "./find-and-update-value";
 import { useMasa } from "@/contexts/useMasa";
-import { FindAndUpdateValue } from "./Find-and-update-value";
 
 export default function Header() {
   const { shortAddress, names, isNamesLoading } = useMasa();
