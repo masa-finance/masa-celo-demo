@@ -6,9 +6,9 @@ import { useMasa } from "@/contexts/useMasa";
 import { FindAndUpdateValue } from "./Find-and-update-value";
 
 export default function Header() {
+  // dev-rels: Importing celo names and some helpers to replace the address in rainbowkit button
   const { shortAddress, names, isNamesLoading } = useMasa();
 
-  console.log({ names });
 
   return (
     <Disclosure as="nav" className="bg-prosperity border-b border-black">
@@ -47,6 +47,8 @@ export default function Header() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+
+                {/* dev-rels: Injecting address to button without loosing styles, this can also be achieved by using a custom button from rainbowkit https://www.rainbowkit.com/docs/custom-connect-button */}
                 <FindAndUpdateValue
                   target={shortAddress ?? ""}
                   value={names?.[0] ?? ""}
@@ -60,6 +62,7 @@ export default function Header() {
                     showBalance={{ smallScreen: true, largeScreen: false }}
                   />
                 </FindAndUpdateValue>
+
               </div>
             </div>
           </div>

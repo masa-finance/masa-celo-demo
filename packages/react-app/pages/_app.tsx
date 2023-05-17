@@ -54,6 +54,7 @@ const wagmiClient = createClient({
 function App({ Component, pageProps }: AppProps) {
   return (
     <WagmiConfig client={wagmiClient}>
+      {/* dev-rels: Added masa provider wrapping the app so it can be used from inside   NOTE: it must be below WagmiConfig provider so we can use the signer from wagmi */}
       <MasaProvider>
         <RainbowKitProvider chains={chains} coolMode={true}>
           <Layout>

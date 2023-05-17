@@ -9,7 +9,10 @@ interface MasaProviderProps {
   children: JSX.Element;
 }
 export const MasaProvider = ({ children }: MasaProviderProps) => {
+
   const [masa, setMasa] = useState<Masa>();
+  
+  // dev-rels: Using wagmi hooks to load different components such as the signer ( required for masa-sdk to work ) and the address for internal usage
   const { data: signer } = useSigner();
   const { address } = useAccount();
 
@@ -19,21 +22,23 @@ export const MasaProvider = ({ children }: MasaProviderProps) => {
     }
   }, [address]);
 
+  // dev-rels: This method creates and returns a masa-sdk instance ( which allows us to access to masa's tools ) NOTE: networkName can be updated with the current connected network
   const createMasa = (masaSigner: any) => {
     return new Masa({
       wallet: masaSigner,
       networkName: "celo",
       environment: "dev",
-      verbose: true,
     });
   };
 
+  // dev-rels: This triggers masa-sdk instance creation when there is a signer properly connected
   useEffect(() => {
     if (!masa && signer) {
       setMasa(createMasa(signer));
     }
   }, [signer, setMasa]);
 
+  // dev-rels: Importing celo names from hook
   const { names, isLoading } = useCeloNames(masa);
 
   const namesList = useMemo(() => {
